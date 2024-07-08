@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename local variable &apos;gameDetails&apos; in &apos;com.pmf.rzk.GameService.updateGame(...)&apos; to &apos;g&apos;&#x0A;- Original project: &apos;games-service&apos;&#x0A;- Original element: &apos;com.pmf.rzk.GameService.updateGame(Long, GamesAzd).gameDetails&apos;&#x0A;- Renamed element: &apos;gameDetails&apos;&#x0A;- Update references to refactored element" description="Rename local variable &apos;gameDetails&apos;" id="org.eclipse.jdt.ui.rename.local.variable" input="/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.pmf.rzk{GameService.java[GameService~updateGame~QLong;~QGamesAzd;@gameDetails!497!516!506!516!QGamesAzd;!0!true" name="g" references="true" stamp="1719685619761" version="1.0"/>
+</session>

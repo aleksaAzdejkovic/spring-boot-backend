@@ -1,0 +1,34 @@
+package com.pmf.rzk;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+@Service
+public class GameService {
+    @Autowired
+    private GameRepo gameRepository;
+
+    public Game addGame(Game game) {
+        return gameRepository.save(game);
+    }
+
+    public Optional<Game> updateGame(Long gameId, Game gameDetails) {
+        Optional<Game> game = gameRepository.findById(gameId);
+        if (game.isPresent()) {
+            Game existingGame = game.get();
+            existingGame.setName(gameDetails.getName());
+            existingGame.setHomeTeamWinOdds(gameDetails.getHomeTeamWinOdds());
+            existingGame.setDrawOdds(gameDetails.getDrawOdds());
+            existingGame.setAwayTeamWinOdds(gameDetails.getAwayTeamWinOdds());
+            return Optional.of(gameRepository.save(existingGame));
+        }
+        return Optional.empty();
+    }
+
+    public List<Game> getAllGames() {
+        return gameRepository.findAll();
+    }
+}	

@@ -1,0 +1,41 @@
+package com.pmf.rzk;
+
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
+
+import com.pmf.rzk.model.UsersAzd;
+import com.pmf.rzk.repository.KorisnikRepo;
+
+@Service
+public class KorisnikService {
+    @Autowired
+    private KorisnikRepo userRepository;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
+    public UsersAzd registerUser(UsersAzd user) {
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        return userRepository.save(user);
+    }
+
+    public Optional<UsersAzd> loginUser(String email, String password) {
+        Optional<UsersAzd> user = userRepository.findByEmail(email);
+        if (user.isPresent() && passwordEncoder.matches(password, user.get().getPassword())) {
+            return user;
+        }
+        return Optional.empty();
+    }
+
+    public UsersAzd updateUser(Integer id, UsersAzd userDetails) {
+        UsersAzd user = userRepository.findById(id).orElseThrow(() -> new RuntimeException("User not found"));
+        user.setName(userDetails.getName());
+        user.setEmail(userDetails.getEmail());
+        user.setPassword(passwordEncoder.encode(userDetails.getPassword()));
+        user.setBalance(userDetails.getBalance());
+        return userRepository.save(user);
+    }
+}

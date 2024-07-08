@@ -1,0 +1,5 @@
+package com.pmf.rzk.repository;
+
+public interface UserRepo {
+
+}

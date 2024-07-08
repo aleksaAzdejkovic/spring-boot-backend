@@ -1,0 +1,3 @@
+spring.application.name=games-service
+server.port=8000
+spring.config.import=optioanl:configserver:http://localhost:8888
